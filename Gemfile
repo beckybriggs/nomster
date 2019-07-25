@@ -37,6 +37,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'simple_form'
 gem "font-awesome-rails"
+gem 'devise'
 
 gem 'will_paginate', '~> 3.1.0'
 gem 'jquery-rails'
