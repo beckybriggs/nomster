@@ -1,4 +1,31 @@
 <div class="booyah-box col-10 offset-1">
+  <div class="row mx-auto my-auto">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner2" role="listbox">
+        <% @place.photos.each_with_index do |photo, index| %>
+          <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
+            <%= image_tag photo.picture.url, class: 'd-block col-4 img-fluid' %>
+            <div class="carousel-caption2 carousel-caption">
+              <h3 class="h3-responsive"><%= photo.caption %></h3>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <!-- Controls -->
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+  <br/><br/>
   <h1><%= @place.name %></h1>
   <i><%= @place.address %></i>
   <br/><br/>
@@ -35,9 +62,7 @@
   <div class="float-right">
     <% if current_user && current_user == @place.user %>
       <%= link_to 'Edit', edit_place_path(@place), class: 'btn btn-primary' %>
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#photosModal">
-    Upload Photo
-  </button>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#photosModal">Upload Photo</button>
       <%= link_to 'Delete', place_path(@place), method: :delete, data: {confirm: 'Are you sure you want to delete this?'}, class: 'btn btn-danger' %>
     <% end %>
   </div>
@@ -66,21 +91,6 @@
       <% end %>
     </div>
   </div>
-</div>
-
-<div class="clear"></div>
-
-<div class="row">
-  <% @place.photos.each do |photo| %>
-    <div class="image-list-small">
-        <% if photo.picture.url.present? %>
-          <a><%= image_tag photo.picture.url, class: 'img-fluid' %></a>
-          <div class="details">
-            <h3><%= photo.caption %></h3>
-          </div>
-        <% end %>
-    </div>
-  <% end %>
 </div>
 
 <div class="clear"></div>
@@ -132,3 +142,37 @@
     </div>
   <% end %>
 </div>
+
+<!--scripts loaded here-->
+  
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+  
+  
+  
+  <script>
+$('#recipeCarousel').carousel({
+  interval: 10000
+})
+
+$('.carousel .carousel-item').each(function(){
+    var next = $(this).next();
+    console.log("NEXT", next);
+    if (!next.length) {
+      next = $(this).siblings(':first');
+    }
+
+    next.children(':first-child').clone().appendTo($(this));
+    
+    if (next.next().length>0) {
+      next.next().children(':first-child').clone().appendTo($(this));
+    } else {
+      $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
+    
+  }
+  $('.carousel-caption').clone().appendTo($(this));
+});
+
+
+  </script>

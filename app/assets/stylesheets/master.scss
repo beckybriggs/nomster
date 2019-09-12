@@ -109,58 +109,6 @@ blockquote p {
   display: inline;
 }
 
-.image-list-small {
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0 auto;
-  text-align: center;
-  max-width: 150px;
-  padding: 0;
-}
-
-.image-list-small li {
-  display: inline-block;
-  width: 181px;
-  margin: 0 12px 30px;
-}
-
-
-/* Photo */
-
-.image-list-small li > a {
-  display: block;
-  text-decoration: none;
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 137px;
-  margin: 0;
-  padding: 0;
-  border: 4px solid #ffffff;
-  outline: 1px solid #d0d0d0;
-  box-shadow: 0 2px 1px #DDD;
-}
-
-.image-list-small .details {
-  margin-top: 4px;
-}
-
-/* Title */
-
-.image-list-small .details h3 {
-  display: block;
-  font-size: 10px;
-  margin: 0 0 3px 0;
-}
-
-.image-list-small .details h3 a {
-  color: #303030;
-  text-decoration: none;
-}
-
-.carousel-inner > .carousel-item > img, .carousel-inner > .carousel-item > a > img {
-  max-height: 550px;
-  width: 100%;
-}
-
 .carousel-caption {
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
   font-size: 60px;
@@ -172,6 +120,61 @@ blockquote p {
   left: 0;
 }
 
+.carousel-caption2 h3 {
+  // font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  // font-size: 20px;
+  // font-weight: 100;
+  // text-shadow: rgba(0, 0, 0, 0.95) 2px 2px;
+  // background-color: rgba(0, 0, 0, 0.5);
+  // width: 100%;
+  // position: absolute;
+  // left: 0;
+  font-size: 40px;
+}
+
 .carousel {
   box-shadow: 0px 3px 8px #2a2a2a;
+}
+
+.carousel-inner > .carousel-item > img, .carousel-inner > .carousel-item > a > img {
+  max-height: 550px;
+  width: 100%;
+}
+
+.carousel-inner2 > .carousel-item > img, .carousel-inner2 > .carousel-item > a > img {
+  max-height: 250px;
+}
+
+.carousel-inner2 > .carousel-item > img, .carousel-inner2 > .carousel-item > a > img {
+  object-fit: contain;
+}
+
+.carousel-inner2 .carousel-item-right.active,
+.carousel-inner2 .carousel-item-next {
+  transform: translateX(33.33%);
+}
+
+.carousel-inner2 .carousel-item-left.active, 
+.carousel-inner2 .carousel-item-prev {
+  transform: translateX(-33.33%)
+}
+  
+.carousel-inner2 .carousel-item-right,
+.carousel-inner2 .carousel-item-left{ 
+  transform: translateX(0);
+}
+
+.carousel-inner2 .carousel-item .carousel-caption-right.active,
+.carousel-inner2 .carousel-item .carousel-caption-next {
+  transform: translateX(33.33%);
+}
+
+.carousel-inner2 .carousel-item-left.active, 
+.carousel-inner2 .carousel-item-prev {
+  transform: translateX(-33.33%)
+}
+  
+.carousel-inner2 .carousel-item-right,
+.carousel-inner2 .carousel-item-left{ 
+  transform: translateX(0);
 }
