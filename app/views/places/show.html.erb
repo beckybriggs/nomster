@@ -6,9 +6,13 @@
       <div class="carousel-inner2" role="listbox">
         <% @place.photos.each_with_index do |photo, index| %>
           <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
-            <%= image_tag photo.picture.url, class: 'd-block col-4 img-fluid' %>
-            <div class="carousel-caption2 carousel-caption">
-              <h3 class="h3-responsive"><%= photo.caption %></h3>
+            <div class="row col-3">
+              <div class="img-box">
+                <%= image_tag photo.picture.url, class: 'img-fluid' %>
+              </div>
+              <div class="carousel-caption2">
+                <%= photo.caption %>
+              </div>
             </div>
           </div>
         <% end %>
@@ -67,6 +71,30 @@
     <% end %>
   </div>
   <div class="clear"></div>
+  
+  <br/><br/>
+  
+  <h1 class="float-left">Comments</h1>
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary btn-lg float-right" data-toggle="modal" data-target="#commentsModal">
+    Add a comment
+  </button>
+
+  <div class="clear"></div>
+
+  <div class="row">
+    <% @place.comments.each do |comment| %>
+      <div class="col-10 col-sm-5">
+        <blockquote>
+          <% if comment.humanized_rating.present? %>
+            <b><%= comment.humanized_rating %></b> -
+          <% end %>
+          <%= comment.message %>
+          <small><%= comment.user.email %></small>
+        </blockquote>
+      </div>
+    <% end %>
+  </div>
 </div>
 
 <!-- Photos Modal -->
@@ -119,30 +147,6 @@
   </div>
 </div>
 
-<div class="col-10 offset-1">
-  <h1 class="float-left">Comments</h1>
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary btn-lg float-right" data-toggle="modal" data-target="#commentsModal">
-    Add a comment
-  </button>
-</div>
-
-<div class="clear"></div>
-
-<div class="row">
-  <% @place.comments.each do |comment| %>
-    <div class="col-12 col-sm-6">
-      <blockquote>
-        <% if comment.humanized_rating.present? %>
-          <b><%= comment.humanized_rating %></b> -
-        <% end %>
-        <%= comment.message %>
-        <small><%= comment.user.email %></small>
-      </blockquote>
-    </div>
-  <% end %>
-</div>
-
 <!--scripts loaded here-->
   
   <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -158,20 +162,18 @@ $('#recipeCarousel').carousel({
 
 $('.carousel .carousel-item').each(function(){
     var next = $(this).next();
-    console.log("NEXT", next);
     if (!next.length) {
-      next = $(this).siblings(':first');
+    next = $(this).siblings(':first');
     }
-
     next.children(':first-child').clone().appendTo($(this));
-    
-    if (next.next().length>0) {
-      next.next().children(':first-child').clone().appendTo($(this));
-    } else {
-      $(this).siblings(':first').children(':first-child').clone().appendTo($(this));
-    
-  }
-  $('.carousel-caption').clone().appendTo($(this));
+
+    for (var i=0;i<2;i++) {
+        next=next.next();
+        if (!next.length) {
+            next = $(this).siblings(':first');
+        }
+        next.children(':first-child').clone().appendTo($(this));
+      }
 });
 
 
