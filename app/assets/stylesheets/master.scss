@@ -143,8 +143,6 @@ blockquote p {
   height: 20vw;
 }
 
-*,
-*:before,
-*:after {
-    box-sizing: content-box !important;
+.carousel-item {
+  box-sizing: content-box !important;
 }
